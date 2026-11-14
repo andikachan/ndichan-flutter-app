@@ -124,9 +124,9 @@ class _MainWebviewScreenState extends State<MainWebviewScreen> {
       AndroidWebViewController.enableDebugging(false);
       androidController.setMediaPlaybackRequiresUserGesture(false);
 
-      // Mixed Content is required so third-party video and CDN image proxies load smoothly
+      // Mixed Content & permission handling
       androidController.setOnPlatformPermissionRequest(
-        (PlatformPermissionRequest request) {
+        (request) {
           request.grant();
         },
       );
