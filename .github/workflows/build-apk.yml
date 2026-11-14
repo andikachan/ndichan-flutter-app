@@ -40,19 +40,19 @@ jobs:
 
       - name: Create Release Keystore & key.properties
         run: |
-          cd android
-          keytool -genkey -v -keystore app/ndichan-release.jks \
-            -keyalg RSA -keysize 2048 -validity 10000 \
-            -alias ndichan -dname "CN=Ndichan, OU=Mobile, O=Ndichan, L=Jakarta, ST=Jakarta, C=ID" \
-            -storepass ndichan123 -keypass ndichan123
+          if [ ! -f "android/app/ndichan-release.jks" ]; then
+            keytool -genkey -v -keystore android/app/ndichan-release.jks \
+              -keyalg RSA -keysize 2048 -validity 10000 \
+              -alias ndichan -dname "CN=Ndichan, OU=Mobile, O=Ndichan, L=Jakarta, ST=Jakarta, C=ID" \
+              -storepass ndichan123 -keypass ndichan123
+          fi
 
-          cat << 'EOF' > key.properties
+          cat << 'EOF' > android/key.properties
           storePassword=ndichan123
           keyPassword=ndichan123
           keyAlias=ndichan
           storeFile=ndichan-release.jks
           EOF
-          cd ..
 
       - name: Build Universal Release APK
         run: flutter build apk --release
