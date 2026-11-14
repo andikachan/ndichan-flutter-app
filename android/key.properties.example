@@ -1,0 +1,7 @@
+# Example Android Keystore signing configuration
+# Copy this file to android/key.properties (which is ignored by git)
+# or set environment variables KEY_ALIAS, KEY_PASSWORD, STORE_FILE, STORE_PASSWORD
+storePassword=your_keystore_password
+keyPassword=your_key_password
+keyAlias=ndichan
+storeFile=ndichan-release.jks

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1055040995617",
+    "project_id": "ngomik-fa617",
+    "storage_bucket": "ngomik-fa617.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055040995617:android:b7a8518f8bd45a1b83fe60",
+        "android_client_info": {
+          "package_name": "com.ngomik"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArQJNcXp-XTXmbjn4B0kSvphxI9pFEfyU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1055040995617:android:19b361faddbe37c183fe60",
+        "android_client_info": {
+          "package_name": "xyz.ndichan"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArQJNcXp-XTXmbjn4B0kSvphxI9pFEfyU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

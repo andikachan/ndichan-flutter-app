@@ -1,0 +1,72 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (!keystorePropertiesFile.exists()) {
+    keystorePropertiesFile = file('key.properties')
+}
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+    namespace = "xyz.ndichan"
+    compileSdk = 35
+    ndkVersion = flutter.ndkVersion
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        applicationId = "xyz.ndichan"
+        minSdk = 21
+        targetSdk = 35
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    signingConfigs {
+        release {
+            def keyAliasVal = System.getenv("KEY_ALIAS") ?: keystoreProperties['keyAlias'] ?: "ndichan"
+            def keyPassVal = System.getenv("KEY_PASSWORD") ?: keystoreProperties['keyPassword'] ?: "ndichan123"
+            def storeFileVal = System.getenv("STORE_FILE") ?: keystoreProperties['storeFile'] ?: "ndichan-release.jks"
+            def storePassVal = System.getenv("STORE_PASSWORD") ?: keystoreProperties['storePassword'] ?: "ndichan123"
+
+            keyAlias keyAliasVal
+            keyPassword keyPassVal
+            storeFile file(storeFileVal)
+            storePassword storePassVal
+        }
+    }
+
+    buildTypes {
+        release {
+            if (file("ndichan-release.jks").exists() || keystoreProperties['storeFile'] != null) {
+                signingConfig = signingConfigs.release
+            } else {
+                signingConfig = signingConfigs.debug
+            }
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.core:core-ktx:1.12.0"
+}
